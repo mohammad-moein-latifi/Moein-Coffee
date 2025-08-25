@@ -1,0 +1,52 @@
+<type>(<scope>): <short summary>
+
+# --------------------------------------------------
+# Commit Types:
+# feat     → new feature
+# fix      → bug fix
+# docs     → documentation only
+# style    → formatting, no code change
+# refactor → code restructure, no new feature/bug fix
+# test     → adding or updating tests
+# chore    → maintenance (deps, config, build)
+#
+# Common Scopes (Next.js / React / API):
+# ui       → components, layout, styling
+# page     → Next.js pages
+# api      → API routes or server logic
+# auth     → authentication / authorization
+# config   → project config (next.config.js, eslint, etc.)
+# deps     → dependencies / packages
+# docs     → documentation
+# test     → testing files
+#
+# --------------------------------------------------
+# Example Patterns:
+#
+# feat:
+#   feat(ui): add [component/feature] for [purpose]
+#   feat(page): create [page name] page with [feature]
+#
+# fix:
+#   fix(api): resolve [issue/bug] causing [problem]
+#   fix(ui): fix [component] rendering issue in [scenario]
+#
+# docs:
+#   docs(readme): update [section] with [details]
+#   docs(api): add usage examples for [endpoint/function]
+#
+# style:
+#   style(ui): apply consistent [formatting/style] to [component/file]
+#   style(page): update layout spacing for [page]
+#
+# refactor:
+#   refactor(api): restructure [function/module] to simplify [logic]
+#   refactor(ui): clean up [component] for better readability
+#
+# test:
+#   test(api): add tests for [function/endpoint]
+#   test(ui): improve coverage for [component/feature]
+#
+# chore:
+#   chore(deps): bump [package] to [version]
+#   chore(config): update [tool/config] for project maintenance
