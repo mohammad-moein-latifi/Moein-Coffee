@@ -1,8 +1,18 @@
 import { hash, compare } from 'bcryptjs';
 import { sign, verify } from 'jsonwebtoken';
 
-const hashPassword = async (password) => {
+import {
+  validateEmail,
+  validatePhone,
+  validatePassword,
+} from './validators.js';
+
+export const hashPassword = async (password) => {
   try {
+    if (!validatePassword(password)) {
+      throw new Error('❌ Password does not meet security requirements.');
+    }
+
     const hashedPassword = await hash(password, 12);
     console.log('✅ Password hashed successfully.');
     return hashedPassword;
@@ -12,7 +22,7 @@ const hashPassword = async (password) => {
   }
 };
 
-const verifyPassword = async (password, hashedPassword) => {
+export const verifyPassword = async (password, hashedPassword) => {
   try {
     const isValid = await compare(password, hashedPassword);
     console.log('✅ Password verification completed.');
@@ -23,7 +33,7 @@ const verifyPassword = async (password, hashedPassword) => {
   }
 };
 
-const generateAccessToken = (data) => {
+export const generateAccessToken = (data) => {
   try {
     const token = sign({ ...data }, process.env.AccessTokenSecretKey, {
       expiresIn: '15m',
@@ -36,7 +46,7 @@ const generateAccessToken = (data) => {
   }
 };
 
-const verifyAccessToken = (token) => {
+export const verifyAccessToken = (token) => {
   try {
     const tokenPayload = verify(token, process.env.AccessTokenSecretKey);
     console.log('✅ Access token verified.');
@@ -47,29 +57,6 @@ const verifyAccessToken = (token) => {
   }
 };
 
-const validateEmail = (email) => {
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailPattern.test(email);
-};
-
-const validatePhone = (phone) => {
-  const phonePattern =
-    /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
-  return phonePattern.test(phone);
-};
-
-const validatePassword = (password) => {
-  const passwordPattern =
-    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
-  return passwordPattern.test(password);
-};
-
-export {
-  hashPassword,
-  verifyPassword,
-  generateAccessToken,
-  verifyAccessToken,
-  validateEmail,
-  validatePhone,
-  validatePassword,
-};
+export const validateUserEmail = (email) => validateEmail(email);
+export const validateUserPhone = (phone) => validatePhone(phone);
+export const validateUserPassword = (password) => validatePassword(password);
