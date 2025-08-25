@@ -1,4 +1,3 @@
-// api/users/route.js
 import connectToDB from '@/configs/db';
 import UserModel from '@/models/User';
 import { authUser } from '@/utils/serverHelpers';
