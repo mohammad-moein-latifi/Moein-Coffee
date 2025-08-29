@@ -1,45 +1,79 @@
-import connectToDB from '@/configs/db';
 import CartModel from '@/models/Cart';
+import connectToDB from '@/configs/db';
 import ProductModel from '@/models/Product';
 import { authUser } from '@/utils/serverHelpers';
-import mongoose from 'mongoose';
 
-function calculateCart(cart) {
-  const totalPrice = cart.items.reduce(
-    (sum, it) => sum + it.price * it.quantity,
-    0
-  );
-  const totalDiscount = cart.items.reduce(
-    (sum, it) =>
-      sum +
-      (it.discountPrice ? (it.price - it.discountPrice) * it.quantity : 0),
-    0
-  );
-  const finalPrice = totalPrice - totalDiscount;
+async function recalcAndPopulate(cart) {
+  await cart.populate('items.product');
 
-  return { totalPrice, totalDiscount, finalPrice };
+  cart.items = (cart.items || []).filter(Boolean);
+
+  if (!cart.items || cart.items.length === 0) {
+    await CartModel.findByIdAndDelete(cart._id);
+    return { deleted: true, cart: null };
+  }
+
+  cart.totalPrice = cart.items.reduce((sum, item) => {
+    const product = item.product;
+    const price = product?.price ?? item.price ?? 0; // قیمت اصلی
+    return sum + price * (item.quantity || 0);
+  }, 0);
+
+  cart.totalDiscount = cart.items.reduce((sum, item) => {
+    const product = item.product;
+    const price = product?.price ?? item.price ?? 0;
+    const finalPrice = product?.finalPrice ?? price;
+    return sum + Math.max(price - finalPrice, 0) * (item.quantity || 0);
+  }, 0);
+
+  cart.finalPrice = cart.items.reduce((sum, item) => {
+    const product = item.product;
+    const finalPrice = product?.finalPrice ?? product?.price ?? item.price ?? 0;
+    return sum + finalPrice * (item.quantity || 0);
+  }, 0);
+
+  await cart.save();
+  await cart.populate('items.product');
+  return { deleted: false, cart };
 }
 
-export async function GET() {
+async function enrichItemFromProduct(productId, qty = 1) {
+  const prod = await ProductModel.findById(productId).select(
+    'price discountPrice finalPrice discount'
+  );
+  if (!prod) throw new Error('Product not found');
+  const effectivePrice =
+    prod.discountPrice ?? prod.finalPrice ?? prod.price ?? 0;
+  const discountValue =
+    typeof prod.discount === 'number'
+      ? prod.discount
+      : Math.max((prod.price ?? 0) - effectivePrice, 0);
+  return {
+    product: prod._id,
+    quantity: Math.max(Number(qty) || 1, 1),
+    price: effectivePrice,
+    discount: discountValue,
+  };
+}
+
+export async function GET(req) {
   try {
     await connectToDB();
     const user = await authUser();
-    if (!user) {
-      return Response.json({ message: 'Unauthorized' }, { status: 401 });
-    }
+    const guestId = !user ? req.headers.get('x-guest-id') || null : null;
 
-    const cart = await CartModel.findOne({ user: user._id }).populate(
-      'items.product'
-    );
+    let cart;
+    if (user)
+      cart = await CartModel.findOne({ user: user._id }).populate(
+        'items.product'
+      );
+    else if (guestId)
+      cart = await CartModel.findOne({ guestId }).populate('items.product');
 
-    if (!cart) {
-      return Response.json({
-        cart: { items: [], totalPrice: 0, totalDiscount: 0, finalPrice: 0 },
-      });
-    }
+    if (!cart)
+      cart = { items: [], totalPrice: 0, totalDiscount: 0, finalPrice: 0 };
 
-    const totals = calculateCart(cart);
-    return Response.json({ cart: { ...cart.toObject(), ...totals } });
+    return Response.json({ cart, deleted: false }, { status: 200 });
   } catch (err) {
     return Response.json(
       { message: 'Internal server error', error: err.message },
@@ -51,50 +85,67 @@ export async function GET() {
 export async function POST(req) {
   try {
     await connectToDB();
+    const { productId, quantity } = await req.json();
+
     const user = await authUser();
-    if (!user) {
-      return Response.json({ message: 'Unauthorized' }, { status: 401 });
+    const guestId = !user ? req.headers.get('x-guest-id') || null : null;
+    if (!user && !guestId)
+      return Response.json({ message: 'Guest ID missing' }, { status: 422 });
+
+    let cart;
+    if (user) {
+      cart = await CartModel.findOne({ user: user._id });
+      if (!cart) cart = await CartModel.create({ user: user._id, items: [] });
+    } else {
+      cart = await CartModel.findOne({ guestId });
+      if (!cart) cart = await CartModel.create({ guestId, items: [] });
     }
 
-    const { productId, quantity = 1 } = await req.json();
-
-    if (!mongoose.Types.ObjectId.isValid(productId) || quantity < 1) {
-      return Response.json(
-        { message: 'Invalid product ID or quantity' },
-        { status: 422 }
-      );
-    }
-
-    const product = await ProductModel.findById(productId);
-    if (!product) {
-      return Response.json({ message: 'Product not found' }, { status: 404 });
-    }
-
-    let cart = await CartModel.findOne({ user: user._id });
-    if (!cart) cart = await CartModel.create({ user: user._id, items: [] });
-
-    const idx = cart.items.findIndex(
-      (it) => it.product.toString() === productId
+    const prod = await ProductModel.findById(productId).select(
+      'price discountPrice finalPrice discount'
     );
-    if (idx > -1) {
-      cart.items[idx].quantity += Number(quantity);
+    if (!prod)
+      return Response.json({ message: 'Product not found' }, { status: 404 });
+
+    const effectivePrice =
+      prod.discountPrice ?? prod.finalPrice ?? prod.price ?? 0;
+    const discountValue =
+      typeof prod.discount === 'number'
+        ? prod.discount
+        : Math.max((prod.price ?? 0) - effectivePrice, 0);
+
+    const existingItem = cart.items.find(
+      (i) => i.product.toString() === productId
+    );
+    if (existingItem) {
+      existingItem.quantity += quantity || 1;
+      if (existingItem.price == null) existingItem.price = effectivePrice;
+      if (existingItem.discount == null) existingItem.discount = discountValue;
     } else {
       cart.items.push({
-        product: product._id,
-        quantity,
-        price: product.price,
-        discountPrice: product.discountPrice ?? null,
+        product: prod._id,
+        quantity: quantity || 1,
+        price: effectivePrice,
+        discount: discountValue,
       });
     }
 
-    await cart.save();
-    await cart.populate('items.product');
+    const result = await recalcAndPopulate(cart);
 
-    const totals = calculateCart(cart);
-    return Response.json({
-      message: 'Item added to cart',
-      cart: { ...cart.toObject(), ...totals },
-    });
+    if (result.deleted) {
+      return Response.json(
+        {
+          cart: { items: [], totalPrice: 0, totalDiscount: 0, finalPrice: 0 },
+          deleted: true,
+        },
+        { status: 200 }
+      );
+    }
+
+    return Response.json(
+      { cart: result.cart, deleted: false },
+      { status: 200 }
+    );
   } catch (err) {
     return Response.json(
       { message: 'Internal server error', error: err.message },
@@ -106,49 +157,56 @@ export async function POST(req) {
 export async function PUT(req) {
   try {
     await connectToDB();
+    const { items } = await req.json();
+
     const user = await authUser();
-    if (!user) {
+    const guestId = !user ? req.headers.get('x-guest-id') || null : null;
+    if (!user && !guestId)
       return Response.json({ message: 'Unauthorized' }, { status: 401 });
+
+    const enriched = [];
+    if (Array.isArray(items)) {
+      for (const it of items) {
+        try {
+          const pid = it.product?._id ?? it.product;
+          const qty = it.quantity ?? 1;
+          const e = await enrichItemFromProduct(pid, qty);
+          enriched.push(e);
+        } catch (e) {}
+      }
     }
 
-    const { items } = await req.json();
-    if (!Array.isArray(items)) {
+    let cart;
+    if (user) {
+      cart = await CartModel.findOne({ user: user._id });
+      if (!cart)
+        cart = await CartModel.create({ user: user._id, items: enriched });
+      else cart.items = enriched;
+    } else {
+      cart = await CartModel.findOne({ guestId });
+      if (!cart) cart = await CartModel.create({ guestId, items: enriched });
+      else cart.items = enriched;
+    }
+
+    const result = await recalcAndPopulate(cart);
+
+    if (result.deleted) {
       return Response.json(
-        { message: 'Invalid items format' },
-        { status: 422 }
+        {
+          cart: { items: [], totalPrice: 0, totalDiscount: 0, finalPrice: 0 },
+          deleted: true,
+        },
+        { status: 200 }
       );
     }
 
-    let cart = await CartModel.findOne({ user: user._id });
-    if (!cart) cart = await CartModel.create({ user: user._id, items: [] });
-
-    cart.items = await Promise.all(
-      items.map(async (it) => {
-        if (!mongoose.Types.ObjectId.isValid(it.product) || it.quantity < 1) {
-          throw new Error('Invalid product ID or quantity');
-        }
-        const p = await ProductModel.findById(it.product);
-        if (!p) throw new Error('Product not found');
-        return {
-          product: p._id,
-          quantity: it.quantity || 1,
-          price: p.price,
-          discountPrice: p.discountPrice ?? null,
-        };
-      })
+    return Response.json(
+      { cart: result.cart, deleted: false },
+      { status: 200 }
     );
-
-    await cart.save();
-    await cart.populate('items.product');
-
-    const totals = calculateCart(cart);
-    return Response.json({
-      message: 'Cart updated successfully',
-      cart: { ...cart.toObject(), ...totals },
-    });
   } catch (err) {
     return Response.json(
-      { message: err.message || 'Internal server error' },
+      { message: 'Internal server error', error: err.message },
       { status: 500 }
     );
   }
@@ -157,36 +215,42 @@ export async function PUT(req) {
 export async function DELETE(req) {
   try {
     await connectToDB();
-    const user = await authUser();
-    if (!user) {
-      return Response.json({ message: 'Unauthorized' }, { status: 401 });
-    }
-
     const { productId } = await req.json();
-    if (!productId) {
+
+    const user = await authUser();
+    const guestId = !user ? req.headers.get('x-guest-id') || null : null;
+    if (!user && !guestId)
+      return Response.json({ message: 'Unauthorized' }, { status: 401 });
+
+    let cart;
+    if (user) cart = await CartModel.findOne({ user: user._id });
+    else cart = await CartModel.findOne({ guestId });
+
+    if (!cart)
       return Response.json(
-        { message: 'Product ID is required' },
-        { status: 422 }
+        {
+          cart: { items: [], totalPrice: 0, totalDiscount: 0, finalPrice: 0 },
+          deleted: false,
+        },
+        { status: 200 }
+      );
+
+    cart.items = cart.items.filter((i) => i.product.toString() !== productId);
+
+    const result = await recalcAndPopulate(cart);
+
+    if (result.deleted) {
+      return Response.json(
+        {
+          cart: { items: [], totalPrice: 0, totalDiscount: 0, finalPrice: 0 },
+          deleted: true,
+        },
+        { status: 200 }
       );
     }
 
-    const product = await ProductModel.findById(productId);
-    if (!product) {
-      return Response.json({ message: 'Product not found' }, { status: 404 });
-    }
-
-    let cart = await CartModel.findOne({ user: user._id });
-    if (!cart) {
-      return Response.json({ message: 'Cart not found' }, { status: 404 });
-    }
-
-    cart.items = cart.items.filter((it) => it.product.toString() !== productId);
-
-    await cart.save();
-    await cart.populate('items.product');
-
     return Response.json(
-      { message: 'Product removed from cart', cart },
+      { cart: result.cart, deleted: false },
       { status: 200 }
     );
   } catch (err) {
