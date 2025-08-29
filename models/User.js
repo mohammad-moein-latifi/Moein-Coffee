@@ -50,11 +50,6 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: [true, 'رمز عبور الزامی است'],
-      minlength: [8, 'رمز عبور باید حداقل ۸ کاراکتر باشد'],
-      match: [
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        'رمز عبور باید شامل حداقل یک حرف بزرگ، یک حرف کوچک، یک عدد و یک کاراکتر ویژه باشد',
-      ],
     },
     role: {
       type: String,
