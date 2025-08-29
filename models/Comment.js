@@ -4,7 +4,7 @@ const schema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Types.ObjectId,
-      ref: 'User', // اگر کاربر ثبت‌نامی باشه
+      ref: 'User', 
       required: false,
     },
     username: {
