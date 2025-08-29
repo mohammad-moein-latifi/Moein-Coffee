@@ -3,20 +3,62 @@ require('./Comment');
 
 const schema = new mongoose.Schema(
   {
-    name: { type: String, required: true, trim: true },
-    price: { type: Number, required: true, min: 0 },
-    shortDescription: { type: String, required: true, trim: true },
-    longDescription: { type: String, required: true, trim: true },
-    weight: { type: Number, required: true, min: 0 },
-    suitableFor: { type: String, required: true, trim: true },
-    smell: { type: String, required: true, trim: true },
-    score: { type: Number, default: 5, min: 0, max: 5 },
-    tags: { type: [String], required: true },
+    img: {
+      type: String,
+      required: true,
+      trim: true,
+    },
 
-    img: { type: String, required: true, trim: true },
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
 
-    isNew: { type: Boolean, default: false },
-    isSpecial: { type: Boolean, default: false },
+    shortDescription: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    longDescription: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    price: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+
+    weight: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+
+    smell: {
+      type: Number,
+      default: 5,
+      min: 1,
+      max: 10,
+    },
+
+    score: {
+      type: Number,
+      default: 5,
+      min: 1,
+      max: 5,
+    },
+
+    stock: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+
     discount: {
       type: Number,
       min: 0,
@@ -33,12 +75,50 @@ const schema = new mongoose.Schema(
       },
     },
 
-    stock: { type: Number, default: 0, min: 0 },
+    isSpecial: {
+      type: Boolean,
+      default: false,
+    },
+
+    isNew: {
+      type: Boolean,
+      default: false,
+    },
 
     comments: [
       {
         type: mongoose.Types.ObjectId,
         ref: 'Comment',
+      },
+    ],
+
+    notes: {
+      type: [String],
+      required: true,
+    },
+
+    combinations: [
+      {
+        percentage: {
+          type: Number,
+          required: true,
+          min: 0,
+          max: 100,
+        },
+
+        type: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+
+        origins: [
+          {
+            type: String,
+            required: true,
+            trim: true,
+          },
+        ],
       },
     ],
   },
