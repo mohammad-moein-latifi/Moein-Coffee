@@ -19,7 +19,7 @@ export async function POST(req) {
   try {
     await connectToDB();
     const body = await req.json();
-    const { title, author, summary, body: content } = body;
+    const { img, title, author, summary, body: content } = body;
 
     // Validation
     if (!stringRequired(title) || !stringMaxLength(title, 200)) {
@@ -46,8 +46,12 @@ export async function POST(req) {
         { status: 422 }
       );
     }
+    if (!stringRequired(img)) {
+      return Response.json({ message: 'Image is required' }, { status: 422 });
+    }
 
     const article = await ArticleModel.create({
+      img,
       title,
       author,
       summary,

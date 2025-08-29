@@ -1,28 +1,22 @@
-import connectToDB from "@/configs/db";
-import UserModel from "@/models/User";
-import { generateAccessToken, hashPassword } from "@/utils/auth";
-import { roles } from "@/utils/constants";
+import UserModel from '@/models/User';
+import connectToDB from '@/configs/db';
+import { roles } from '@/constants/auth';
+import { hashPassword, generateAccessToken } from '@/utils/auth';
 import {
   validateEmail,
   validatePassword,
   validateUsername,
   validateName,
   validatePhone,
-} from "@/utils/validators";
+} from '@/utils/validators';
+import { mergeGuestCartWithUser } from '@/libs/cart/mergeGuestCart';
 
 export async function POST(req) {
   try {
     await connectToDB();
-    const {
-      firstName,
-      lastName,
-      username,
-      phone,
-      email,
-      password,
-    } = await req.json();
+    const { firstName, lastName, username, phone, email, password } =
+      await req.json();
 
-    // Validation
     if (
       !validateName(firstName) ||
       !validateName(lastName) ||
@@ -31,29 +25,22 @@ export async function POST(req) {
       !validatePhone(phone) ||
       !validatePassword(password)
     ) {
-      return Response.json(
-        { message: "Invalid user data" },
-        { status: 422 }
-      );
+      return Response.json({ message: 'Invalid user data' }, { status: 422 });
     }
 
     const isUserExist = await UserModel.findOne({
       $or: [{ username }, { email }, { phone }],
     });
-
-    if (isUserExist) {
+    if (isUserExist)
       return Response.json(
-        { message: "Username, email, or phone already exists" },
+        { message: 'Username, email, or phone already exists' },
         { status: 409 }
       );
-    }
 
     const hashedPassword = await hashPassword(password);
-    const accessToken = generateAccessToken({ email });
-
     const usersCount = await UserModel.countDocuments();
 
-    await UserModel.create({
+    const newUser = await UserModel.create({
       firstName,
       lastName,
       username,
@@ -63,18 +50,25 @@ export async function POST(req) {
       role: usersCount > 0 ? roles.USER : roles.ADMIN,
     });
 
+    const accessToken = generateAccessToken({ email });
+
+    const guestId = req.headers.get('x-guest-id') || null;
+    if (guestId) await mergeGuestCartWithUser(newUser._id, guestId);
+
+    const secureFlag = process.env.NODE_ENV === 'production' ? '; Secure' : '';
+
     return Response.json(
-      { message: "User signed up successfully" },
+      { message: 'User signed up successfully' },
       {
         status: 201,
         headers: {
-          "Set-Cookie": `token=${accessToken}; Path=/; HttpOnly; Secure; SameSite=Strict`,
+          'Set-Cookie': `token=${accessToken}; Path=/; HttpOnly; SameSite=Strict${secureFlag}`,
         },
       }
     );
   } catch (err) {
     return Response.json(
-      { message: "Internal server error", error: err.message },
+      { message: 'Internal server error', error: err.message },
       { status: 500 }
     );
   }
