@@ -30,14 +30,15 @@ export async function POST(req) {
       shortDescription,
       longDescription,
       weight,
-      suitableFor,
       smell,
-      tags,
+      notes,
       img,
       isNew = false,
       isSpecial = false,
       discount = 0,
       stock = 0,
+      score = 5,
+      combinations = [],
     } = body;
 
     // Validation
@@ -45,8 +46,6 @@ export async function POST(req) {
       !stringRequired(name) ||
       !stringRequired(shortDescription) ||
       !stringRequired(longDescription) ||
-      !stringRequired(suitableFor) ||
-      !stringRequired(smell) ||
       !stringRequired(img)
     ) {
       return Response.json(
@@ -54,22 +53,48 @@ export async function POST(req) {
         { status: 422 }
       );
     }
+
     if (
       !numberMin(price, 0) ||
       !numberMin(weight, 0) ||
       !numberRange(discount, 0, 100) ||
-      !numberMin(stock, 0)
+      !numberMin(stock, 0) ||
+      !numberRange(score, 1, 5) ||
+      !numberRange(smell, 1, 10)
     ) {
       return Response.json(
         { message: 'Numeric fields are invalid' },
         { status: 422 }
       );
     }
-    if (!arrayOfStrings(tags)) {
+
+    if (!arrayOfStrings(notes)) {
       return Response.json(
-        { message: 'Tags must be an array of strings' },
+        { message: 'Notes must be arrays of strings' },
         { status: 422 }
       );
+    }
+
+    if (!Array.isArray(combinations)) {
+      return Response.json(
+        { message: 'Combinations must be an array' },
+        { status: 422 }
+      );
+    }
+
+    for (const c of combinations) {
+      if (
+        typeof c.percentage !== 'number' ||
+        c.percentage < 0 ||
+        c.percentage > 100 ||
+        !stringRequired(c.type) ||
+        !arrayOfStrings(c.origins)
+      ) {
+        return Response.json(
+          { message: 'Invalid combination format' },
+          { status: 422 }
+        );
+      }
     }
 
     const product = await ProductModel.create({
@@ -78,14 +103,15 @@ export async function POST(req) {
       shortDescription,
       longDescription,
       weight,
-      suitableFor,
       smell,
-      tags,
+      notes,
       img,
       isNew,
       isSpecial,
       discount,
       stock,
+      score,
+      combinations,
     });
 
     return Response.json(
