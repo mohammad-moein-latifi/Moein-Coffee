@@ -11,7 +11,7 @@ export default function Contact() {
             className="w-100 shrink-0"
             src="/img/contact.png"
             alt="contact us"
-            weight={500}
+            width={500}
             height={500}
           />
           <div className="flex flex-col items-start text-stone-800 dark:text-white">

@@ -57,7 +57,7 @@ export default function AuthPage() {
         });
       }
 
-      toast.success('خوش آمدید ! در حال هدایت به صفحه اصلی . . .');
+      toast.success('خوش آمدید ! در حال هدایت به صفحه اصلی ');
 
       setTimeout(() => router.push('/'), 700);
     } catch (err) {
