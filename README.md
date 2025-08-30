@@ -73,6 +73,11 @@ The project follows a modular architecture and features minimalist 3D-ish UI and
 
 ---
 
+## 📚 API Documentation
+Full API documentation: [Project_API_Documentation](./docs/Project_API_Documentation.md) 
+
+---
+
 ## ⚡ Installation & Run (Backend + Frontend)
 
 ```bash
