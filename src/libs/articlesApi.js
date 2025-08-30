@@ -1,5 +1,10 @@
 export async function getArticles() {
-  const res = await fetch('http://localhost:3000/api/articles', {
+  const API_URL =
+    window.location.hostname === 'localhost'
+      ? 'http://localhost:3000'
+      : process.env.NEXT_PUBLIC_API_URL;
+
+  const res = await fetch(`${API_URL}/api/articles`, {
     cache: 'no-store',
   });
 
