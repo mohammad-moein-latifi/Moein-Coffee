@@ -3,10 +3,11 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/configs/*": ["./configs/*"],
+      "@/constants/*": ["./constants/*"],
       "@/models/*": ["./models/*"],
       "@/app/*": ["./src/app/*"],
       "@/components/*": ["./src/components/*"],
-      "@/context/*": ["./src/context/*"],
+      "@/contexts/*": ["./src/contexts/*"],
       "@/hooks/*": ["./src/hooks/*"],
     }
   }
