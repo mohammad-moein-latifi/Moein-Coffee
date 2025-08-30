@@ -69,7 +69,7 @@ The project follows a modular architecture and features minimalist 3D-ish UI and
 ---
 
 ## 🌐 Live Demo
-🔗 [View Demo](http://moein-coffee.vercel.app/)
+🔗 [moein-coffee.vercel.app](http://moein-coffee.vercel.app/)
 
 ---
 
