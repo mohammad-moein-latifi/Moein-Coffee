@@ -10,17 +10,17 @@
   --radius-4xl: 2rem;
 
   --font-vazir: "Vazir";
-  /* weight : 400 */
+
   --font-vazir-md: "Vazir-Medium";
-  /* weight : 500 */
+
   --font-vazir-b: "Vazir-Bold";
-  /* weight : 600 */
+
   --font-estedad: "Estedad-Light";
-  /* weight : 300 */
+
   --font-estedad-md: "Estedad-Medium";
-  /* weight : 500 */
+
   --font-estedad-b: "Estedad-Bold";
-  /* weight : 700 */
+
 
   --tracking-tightest: -0.065em;
 
@@ -66,6 +66,33 @@
     background: #fbbf24;
   }
 
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+
+    -webkit-text-fill-color: #f5f5f4 !important;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+  }
+
+
+  input:-moz-autofill,
+  textarea:-moz-autofill,
+  select:-moz-autofill {
+    box-shadow: 0 0 0px 1000px transparent inset !important;
+    -moz-text-fill-color: #f5f5f4 !important;
+  }
+
+
+
+
   @font-face {
     font-family: "Vazir";
     src: url("/fonts/Vazir/woff2/Vazir-Regular-FD.woff2") format("woff2");
@@ -107,6 +134,21 @@
   .bg-header-desktop {
     background-image: url("/img/headerBg.png");
   }
+
+  .bg-auth {
+
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url('/img/authBg.png');
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+  }
+
+
 
   .flex-center {
     display: flex;
@@ -217,6 +259,42 @@
     margin: auto;
     background-color: #ef4444;
   }
+
+
+
+
+  .toast-root {
+    @apply max-w-sm w-full flex items-start gap-3 rounded-xl shadow-lg border px-4 py-3 text-stone-100 backdrop-blur-md;
+    background-color: rgba(28, 25, 23, 0.8) !important;
+  }
+
+
+  .Toastify__toast {
+    background-color: rgba(28, 25, 23, 0.8) !important;
+    color: inherit !important;
+  }
+
+  /* حاشیهٔ رنگی بر اساس نوع توست */
+  .Toastify__toast--success.toast-root,
+  .Toastify__toast--success {
+    border-color: rgb(16 185 129) !important;
+  }
+
+  .Toastify__toast--error.toast-root,
+  .Toastify__toast--error {
+    border-color: rgb(244 63 94) !important;
+  }
+
+  .Toastify__toast--info.toast-root,
+  .Toastify__toast--info {
+    border-color: rgb(148 163 184) !important;
+  }
+
+
+  .Toastify__progress-bar {
+    background-color: #f59e0b !important;
+  }
+
 
   .swiper-button-prev-custom,
   .swiper-button-next-custom {
