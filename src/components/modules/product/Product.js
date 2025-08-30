@@ -85,10 +85,10 @@ export default function Product({
         </div>
         {/* score + weight */}
         <div className=" flex flex-wrap items-center justify-between mt-2 gap-2 sm:gap-3 md:gap-4">
-          <span className="max-md:block md:inline-block text-xs sm:text-sm md:text-base text-gray-500 dark:text-gray-400">
+          <span className="max-md:w-16 text-xs sm:text-sm md:text-base text-gray-500 dark:text-gray-400">
             وزن: {weight} گرم
           </span>
-          <div className="max-md:block md:inline-block flex items-center gap-0.5 sm:gap-1">
+          <div className="flex items-center gap-0.5 sm:gap-1">
             {new Array(5 - Math.trunc(score)).fill().map((_, id) => (
               <Icon
                 key={`empty-${id}`}
