@@ -26,8 +26,8 @@ export const numberRange = (num, min, max) =>
 export const arrayOfStrings = (arr) =>
   Array.isArray(arr) && arr.every((el) => typeof el === 'string');
 
+export const validateName = (name) => nameRegex.test(name);
 export const validateEmail = (email) => emailRegex.test(email);
 export const validateUsername = (username) => usernameRegex.test(username);
-export const validateName = (name) => nameRegex.test(name);
-export const validatePhone = (phone) => (phone ? phoneRegex.test(phone) : true);
 export const validatePassword = (password) => passwordRegex.test(password);
+export const validatePhone = (phone) => (phone ? phoneRegex.test(phone) : true);
