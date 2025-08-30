@@ -6,7 +6,7 @@
 <h1 align="center">☕ فروشگاه اینترنتی Moein Coffee — ساخته‌شده با Next.js 15</h1>
 
 <p align="center">
-  <a href="./README.en.md">
+  <a href="./README.md">
     <img src="https://img.shields.io/badge/-View%20English%20Version-7F3FBF?style=flat-square&logo=google" alt="View English README"/>
   </a>
 </p>
