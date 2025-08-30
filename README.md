@@ -34,7 +34,7 @@ The project follows a modular architecture and features minimalist 3D-ish UI and
 - ♻️ Shared validation between Frontend and Backend  
 - 🌐 Full RTL support and Persian messages  
 - 🧪 Seed data for quick local development  
-- 🎨 Minimal / modern UI using TailwindCSS + Shadcn/UI  
+- 🎨 Minimal / modern UI using TailwindCSS  
 - 📱 Fully responsive (mobile, tablet, desktop)
 
 ---
