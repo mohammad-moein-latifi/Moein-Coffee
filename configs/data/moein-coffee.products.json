@@ -1,0 +1,442 @@
+[{
+  "_id": {
+    "$oid": "68aec83c414cc9de6175284b"
+  },
+  "img": "/img/products/p1.png",
+  "name": "Royal Espresso",
+  "shortDescription": "اسپرسویی پرقدرت با عطر و طعمی عمیق، مناسب برای عاشقان قهوه‌های کلاسیک ایتالیایی",
+  "longDescription": "Royal Espresso ترکیبی منحصر‌به‌فرد از دانه‌های عربیکا و روبوستا است که با رُست تخصصی تیره تهیه شده‌اند. این محصول با کرمایی غلیظ و طعمی تلخ و کاراملی، مناسب برای اسپرسو‌خورهای حرفه‌ای است و انرژی روزتان را دوچندان می‌کند.",
+  "price": 395000,
+  "weight": 250,
+  "smell": 9,
+  "score": 3,
+  "stock": 30,
+  "discount": 0,
+  "isSpecial": false,
+  "isNew": true,
+  "comments": [],
+  "notes": [
+    "کارامل",
+    "مغزهای بوداده",
+    "شکلات تلخ"
+  ],
+  "combinations": [
+    {
+      "percentage": 70,
+      "type": "عربیکا",
+      "origins": [
+        "برزیل",
+        "کلمبیا"
+      ],
+      "_id": {
+        "$oid": "68aec83c414cc9de6175284c"
+      }
+    },
+    {
+      "percentage": 30,
+      "type": "روبوستا",
+      "origins": [
+        "ویتنام"
+      ],
+      "_id": {
+        "$oid": "68aec83c414cc9de6175284d"
+      }
+    }
+  ],
+  "finalPrice": 395000,
+  "createdAt": {
+    "$date": "2025-08-27T08:56:28.614Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-27T08:56:28.614Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68aec865414cc9de6175284f"
+  },
+  "img": "/img/products/p2.png",
+  "name": "Emerald Roast",
+  "shortDescription": "قهوه‌ای متعادل با نت‌های گیاهی و عطری سبز، مناسب برای دم‌آوری دستی",
+  "longDescription": "Emerald Roast از بهترین دانه‌های کلمبیا و اتیوپی ساخته شده و برای کسانی طراحی شده که به دنبال تجربه‌ای روشن، گیاهی و تازه هستند. بهترین انتخاب برای V60، کمکس و فرنچ‌پرس.",
+  "price": 410000,
+  "weight": 250,
+  "smell": 6,
+  "score": 3,
+  "stock": 10,
+  "discount": 20,
+  "isSpecial": false,
+  "isNew": true,
+  "comments": [],
+  "notes": [
+    "مرکبات",
+    "گل یاس",
+    "گیاهان تازه"
+  ],
+  "combinations": [
+    {
+      "percentage": 100,
+      "type": "عربیکا",
+      "origins": [
+        "اتیوپی",
+        "کلمبیا"
+      ],
+      "_id": {
+        "$oid": "68aec865414cc9de61752850"
+      }
+    }
+  ],
+  "finalPrice": 328000,
+  "createdAt": {
+    "$date": "2025-08-27T08:57:09.455Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-27T08:57:09.455Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68aec906414cc9de61752852"
+  },
+  "img": "/img/products/p3.png",
+  "name": "Ruby Blend",
+  "shortDescription": "ترکیبی شیرین با نت‌های میوه‌ای برای علاقه‌مندان طعم‌های خاص",
+  "longDescription": "Ruby Blend با ترکیب دانه‌های اتیوپی و کنیا، تجربه‌ای میوه‌ای و درخشان ارائه می‌دهد. نت‌های تمشک و گیلاس در این قهوه غالب هستند و برای کسانی که دنبال تنوع و طعم خاص‌اند، انتخابی عالی است.",
+  "price": 430000,
+  "weight": 250,
+  "smell": 7,
+  "score": 4,
+  "stock": 5,
+  "discount": 0,
+  "isSpecial": false,
+  "isNew": false,
+  "comments": [],
+  "notes": [
+    "گیلاس",
+    "تمشک",
+    "شکلات شیرین"
+  ],
+  "combinations": [
+    {
+      "percentage": 100,
+      "type": "عربیکا",
+      "origins": [
+        "اتیوپی",
+        "کنیا"
+      ],
+      "_id": {
+        "$oid": "68aec906414cc9de61752853"
+      }
+    }
+  ],
+  "finalPrice": 430000,
+  "updatedAt": {
+    "$date": "2025-08-27T08:59:50.471Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68aec9de414cc9de61752855"
+  },
+  "img": "/img/products/p4.png",
+  "name": "Sapphire Classic",
+  "shortDescription": "یک ترکیب کلاسیک، متعادل و همه‌پسند",
+  "longDescription": "Sapphire Classic بهترین انتخاب برای کسانی است که دنبال قهوه‌ای با طعم متعادل و ملایم هستند. مناسب برای استفاده روزانه و تمامی روش‌های دم‌آوری.",
+  "price": 680000,
+  "weight": 500,
+  "smell": 7,
+  "score": 4,
+  "stock": 10,
+  "discount": 5,
+  "isSpecial": false,
+  "isNew": false,
+  "comments": [],
+  "notes": [
+    "مغز بادام",
+    "عسل",
+    "شکلات"
+  ],
+  "combinations": [
+    {
+      "percentage": 80,
+      "type": "عربیکا",
+      "origins": [
+        "برزیل"
+      ],
+      "_id": {
+        "$oid": "68aec9de414cc9de61752856"
+      }
+    },
+    {
+      "percentage": 20,
+      "type": "روبوستا",
+      "origins": [
+        "هند"
+      ],
+      "_id": {
+        "$oid": "68aec9de414cc9de61752857"
+      }
+    }
+  ],
+  "finalPrice": 646000,
+  "updatedAt": {
+    "$date": "2025-08-27T09:03:26.394Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68aeca7c414cc9de61752859"
+  },
+  "img": "/img/products/p5.png",
+  "name": "Amber Gold Roast",
+  "shortDescription": "قهوه‌ای شیرین و کاراملی با رُست طلایی",
+  "longDescription": "Amber Gold Roast با رُست متوسط طلایی طعمی نرم و شیرین ارائه می‌دهد. نت‌های کاراملی و عسل در آن غالب است و برای لاته و کاپوچینو بی‌نظیر است.",
+  "price": 420000,
+  "weight": 250,
+  "smell": 6,
+  "score": 5,
+  "stock": 5,
+  "discount": 0,
+  "isSpecial": true,
+  "isNew": false,
+  "comments": [],
+  "notes": [
+    "کارامل",
+    "عسل",
+    "وانیل"
+  ],
+  "combinations": [
+    {
+      "percentage": 100,
+      "type": "عربیکا",
+      "origins": [
+        "کاستاریکا"
+      ],
+      "_id": {
+        "$oid": "68aeca7c414cc9de6175285a"
+      }
+    }
+  ],
+  "finalPrice": 420000,
+  "updatedAt": {
+    "$date": "2025-08-27T09:06:04.818Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68aecb16414cc9de6175285c"
+  },
+  "img": "/img/products/p6.png",
+  "name": "Silver Decaf",
+  "shortDescription": "قهوه بدون کافئین با طعمی اصیل",
+  "longDescription": "Silver Decaf با روش طبیعی و بدون مواد شیمیایی فرآوری شده و بدون کافئین است. مناسب برای افرادی که شب‌ها یا در دوران خاص نمی‌توانند کافئین مصرف کنند، اما همچنان طعم اصیل قهوه را می‌خواهند.",
+  "price": 450000,
+  "weight": 250,
+  "smell": 5,
+  "score": 4,
+  "stock": 0,
+  "discount": 0,
+  "isSpecial": false,
+  "isNew": false,
+  "comments": [],
+  "notes": [
+    "نان تست",
+    "شکلات شیرین"
+  ],
+  "combinations": [
+    {
+      "percentage": 100,
+      "type": "عربیکا",
+      "origins": [
+        "کلمبیا"
+      ],
+      "_id": {
+        "$oid": "68aecb16414cc9de6175285d"
+      }
+    }
+  ],
+  "finalPrice": 450000,
+  "updatedAt": {
+    "$date": "2025-08-27T09:08:38.989Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68aecc1a414cc9de6175285f"
+  },
+  "img": "/img/products/p7.png",
+  "name": "Bronze Dark Roast",
+  "shortDescription": "قهوه‌ای قوی و تیره برای طرفداران طعم تلخ",
+  "longDescription": "Bronze Dark Roast با رُست تیره، قهوه‌ای سنگین و پرقدرت ایجاد کرده که برای کسانی که دنبال طعم تلخ و قوی هستند انتخابی ایده‌آل است.",
+  "price": 750000,
+  "weight": 500,
+  "smell": 10,
+  "score": 5,
+  "stock": 5,
+  "discount": 0,
+  "isSpecial": true,
+  "isNew": false,
+  "comments": [],
+  "notes": [
+    "فندق",
+    "خاکستر ملایم",
+    "شکلات تلخ"
+  ],
+  "combinations": [
+    {
+      "percentage": 60,
+      "type": "عربیکا",
+      "origins": [
+        "برزیل"
+      ],
+      "_id": {
+        "$oid": "68aecc1a414cc9de61752860"
+      }
+    },
+    {
+      "percentage": 40,
+      "type": "روبوستا",
+      "origins": [
+        "هند"
+      ],
+      "_id": {
+        "$oid": "68aecc1a414cc9de61752861"
+      }
+    }
+  ],
+  "finalPrice": 750000,
+  "updatedAt": {
+    "$date": "2025-08-27T09:12:58.793Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68aeccba414cc9de61752863"
+  },
+  "img": "/img/products/p8.png",
+  "name": "Ivory Light Roast",
+  "shortDescription": "قهوه‌ای روشن و مرکباتی با طعمی تازه",
+  "longDescription": "Ivory Light Roast با رُست روشن، عطر مرکبات و گل‌ها را به بهترین شکل نشان می‌دهد. این قهوه مناسب دم‌آوری دستی است و برای عاشقان اسیدیته درخشان انتخاب فوق‌العاده‌ای است.",
+  "price": 440000,
+  "weight": 250,
+  "smell": 5,
+  "score": 4,
+  "stock": 12,
+  "discount": 0,
+  "isSpecial": false,
+  "isNew": false,
+  "comments": [],
+  "notes": [
+    "پرتقال",
+    "لیمو",
+    "گل یاس"
+  ],
+  "combinations": [
+    {
+      "percentage": 100,
+      "type": "عربیکا",
+      "origins": [
+        "اتیوپی"
+      ],
+      "_id": {
+        "$oid": "68aeccba414cc9de61752864"
+      }
+    }
+  ],
+  "finalPrice": 440000,
+  "updatedAt": {
+    "$date": "2025-08-27T09:15:38.051Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68aece0a414cc9de61752866"
+  },
+  "img": "/img/products/p9.png",
+  "name": "Jade Reserve",
+  "shortDescription": "یک ترکیب خاص و لوکس برای لحظات ویژه",
+  "longDescription": "Jade Reserve با استفاده از بهترین دانه‌های آمریکای لاتین و آفریقا ساخته شده و طعمی پیچیده و لایه‌لایه دارد. این قهوه انتخابی است برای کسانی که به دنبال یک تجربه خاص و متفاوت هستند.",
+  "price": 790000,
+  "weight": 500,
+  "smell": 8,
+  "score": 4,
+  "stock": 2,
+  "discount": 0,
+  "isSpecial": false,
+  "isNew": false,
+  "comments": [],
+  "notes": [
+    "فندق",
+    "کاکائو",
+    "میوه‌های قرمز"
+  ],
+  "combinations": [
+    {
+      "percentage": 100,
+      "type": "عربیکا",
+      "origins": [
+        "اتیوپی",
+        "برزیل",
+        "کنیا"
+      ],
+      "_id": {
+        "$oid": "68aece0a414cc9de61752867"
+      }
+    }
+  ],
+  "finalPrice": 790000,
+  "updatedAt": {
+    "$date": "2025-08-27T09:21:14.375Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68aecebc414cc9de61752869"
+  },
+  "img": "/img/products/p10.png",
+  "name": "Obsidian Signature",
+  "shortDescription": "پرچم‌دار برند Moein Coffee با طراحی و ترکیب منحصر‌به‌فرد",
+  "longDescription": "Obsidian Signature لوکس‌ترین محصول Moein Coffee است. ترکیبی از دانه‌های کمیاب اتیوپی و پاناما که با رُست تخصصی تیره-متوسط آماده شده‌اند. این قهوه با عطر بی‌نظیر گل‌ها و طعم شکلات و میوه‌های استوایی، یک تجربه فراموش‌نشدنی ارائه می‌دهد.",
+  "price": 980000,
+  "weight": 500,
+  "smell": 8,
+  "score": 5,
+  "stock": 6,
+  "discount": 6,
+  "isSpecial": true,
+  "isNew": false,
+  "comments": [],
+  "notes": [
+    "آناناس",
+    "انبه",
+    "گل یاس",
+    "شکلات شیری"
+  ],
+  "combinations": [
+    {
+      "percentage": 100,
+      "type": "عربیکا",
+      "origins": [
+        "اتیوپی",
+        "پاناما"
+      ],
+      "_id": {
+        "$oid": "68aecebc414cc9de6175286a"
+      }
+    }
+  ],
+  "finalPrice": 921200,
+  "updatedAt": {
+    "$date": "2025-08-27T09:24:12.293Z"
+  },
+  "__v": 0
+}]
