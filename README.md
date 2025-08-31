@@ -15,6 +15,7 @@
   <img src="https://img.shields.io/badge/License-All%20Rights%20Reserved-black?style=flat-square" alt="License"/>
   <img src="https://img.shields.io/github/stars/mohammad-moein-latifi/Moein-Coffee?style=flat-square&color=yellow" alt="Stars"/>
   <img src="https://img.shields.io/github/forks/mohammad-moein-latifi/Moein-Coffee?style=flat-square&color=blue" alt="Forks"/>
+  <img src="https://img.shields.io/github/v/release/mohammad-moein-latifi/Moein-Coffee?style=flat-square&color=brightgreen" alt="Release"/>
 </p>
 
 ---
@@ -59,13 +60,21 @@ The project follows a modular architecture and features minimalist 3D-ish UI and
 ---
 
 ## 🖼️ Screenshots
-<p align="center">
-  <img src="./public/img/screenshot-home.png" width="600" alt="Home Page Screenshot"/>
-</p>
 
-<p align="center">
-  <img src="./public/img/screenshot-cart.png" width="600" alt="Cart Page Screenshot"/>
-</p>
+### 🖥️ Desktop Screens
+| Home Page | Products |
+|-----------|---------|
+| <img src="https://raw.githubusercontent.com/mohammad-moein-latifi/Moein-Coffee/master/screenshots/001-Home-page.png" alt="Home Page Screenshot" /> | <img src="https://raw.githubusercontent.com/mohammad-moein-latifi/Moein-Coffee/master/screenshots/002-Products.png" alt="Products Screenshot" /> | <img src="https://raw.githubusercontent.com/mohammad-moein-latifi/Moein-Coffee/master/screenshots/003-Articles.png" alt="Articles Screenshot" /> |
+
+| Articles | Auth Page |
+|---------|-----------|
+| <img src="https://raw.githubusercontent.com/mohammad-moein-latifi/Moein-Coffee/master/screenshots/003-Articles.png" alt="Auth Page Screenshot" /> |<img src="https://raw.githubusercontent.com/mohammad-moein-latifi/Moein-Coffee/master/screenshots/004-Auth-page.png" alt="Auth Page Screenshot" /> |
+
+### 📱 Mobile Screens
+| Mobile | Mobile Cart | Mobile 404 Page |
+|--------|------------|----------------|
+| <img src="screenshots/005-Mobile.jpg" alt="Mobile Screenshot" width="250"/> | <img src="screenshots/006-Mobile-cart.jpg" alt="Mobile Cart Screenshot" width="250"/> | <img src="screenshots/007-Mobile-404-page.jpg" alt="Mobile 404 Screenshot" width="250"/> |
+
 
 ---
 
