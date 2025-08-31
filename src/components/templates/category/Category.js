@@ -16,7 +16,7 @@ export default function Category() {
               width={500}
               height={500}
             />
-            <span className="font-vazir-b text-sm sm:text-base md:text-lg lg:text-xl text-stone-800 dark:text-amber-50">
+            <span className="font-vazir-b text-xs sm:text-sm md:text-base lg:text-lg text-stone-800 dark:text-amber-50">
               کپسول و فوری
             </span>
           </a>
@@ -30,7 +30,7 @@ export default function Category() {
               width={500}
               height={500}
             />
-            <span className="font-vazir-b text-sm sm:text-base md:text-lg lg:text-xl text-stone-800 dark:text-amber-50">
+            <span className="font-vazir-b text-xs sm:text-sm md:text-base lg:text-lg  text-stone-800 dark:text-amber-50">
               لوازم جانبی و تجهیزات
             </span>
           </a>
@@ -44,7 +44,7 @@ export default function Category() {
               width={500}
               height={500}
             />
-            <span className="font-vazir-b text-sm sm:text-base md:text-lg lg:text-xl text-stone-800 dark:text-amber-50">
+            <span className="font-vazir-b text-xs sm:text-sm md:text-base lg:text-lg text-stone-800 dark:text-amber-50">
               پاکت و هدیه
             </span>
           </a>
@@ -58,7 +58,7 @@ export default function Category() {
               width={500}
               height={500}
             />
-            <span className="font-vazir-b text-sm sm:text-base md:text-lg lg:text-xl text-stone-800 dark:text-amber-50">
+            <span className="font-vazir-b text-xs sm:text-sm md:text-base lg:text-lg text-stone-800 dark:text-amber-50">
               قهوه‌های ویژه
             </span>
           </a>
