@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/license/mohammad-moein-latifi/Moein-Coffee?style=flat-square&color=brightgreen" alt="License"/>
+  <img src="https://img.shields.io/badge/License-All%20Rights%20Reserved-black?style=flat-square" alt="License"/>
   <img src="https://img.shields.io/github/stars/mohammad-moein-latifi/Moein-Coffee?style=flat-square&color=yellow" alt="Stars"/>
   <img src="https://img.shields.io/github/forks/mohammad-moein-latifi/Moein-Coffee?style=flat-square&color=blue" alt="Forks"/>
 </p>
