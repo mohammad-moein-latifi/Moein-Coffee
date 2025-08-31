@@ -59,13 +59,19 @@
 ---
 
 ## 🖼️ اسکرین‌شات‌ها
-<p align="center">
-  <img src="./public/img/screenshot-home.png" width="600" alt="Home Page Screenshot"/>
-</p>
+### 🖥️ Desktop 
+| Home Page | Products |
+|-----------|---------|
+| <img src="https://raw.githubusercontent.com/mohammad-moein-latifi/Moein-Coffee/master/screenshots/001-Home-page.png" alt="Home Page Screenshot" /> | <img src="https://raw.githubusercontent.com/mohammad-moein-latifi/Moein-Coffee/master/screenshots/002-Products.png" alt="Products Screenshot" /> | <img src="https://raw.githubusercontent.com/mohammad-moein-latifi/Moein-Coffee/master/screenshots/003-Articles.png" alt="Articles Screenshot" /> |
 
-<p align="center">
-  <img src="./public/img/screenshot-cart.png" width="600" alt="Cart Page Screenshot"/>
-</p>
+| Articles | Auth Page |
+|---------|-----------|
+| <img src="https://raw.githubusercontent.com/mohammad-moein-latifi/Moein-Coffee/master/screenshots/003-Articles.png" alt="Auth Page Screenshot" /> |<img src="https://raw.githubusercontent.com/mohammad-moein-latifi/Moein-Coffee/master/screenshots/004-Auth-page.png" alt="Auth Page Screenshot" /> |
+
+### 📱 Mobile 
+| Mobile | Mobile Cart | Mobile 404 Page |
+|--------|------------|----------------|
+| <img src="screenshots/005-Mobile.jpg" alt="Mobile Screenshot" width="250"/> | <img src="screenshots/006-Mobile-cart.jpg" alt="Mobile Cart Screenshot" width="250"/> | <img src="screenshots/007-Mobile-404-page.jpg" alt="Mobile 404 Screenshot" width="250"/> |
 
 ---
 
