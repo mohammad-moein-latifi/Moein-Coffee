@@ -27,15 +27,16 @@ The project follows a modular architecture and features minimalist 3D-ish UI and
 
 ## ✨ Features
 
-- 🔐 Secure authentication with JWT (signup, signin, signout, me)  
-- 🧺 Guest cart with automatic merge after login  
-- ⚡ Fast, seamless UI with optimistic updates  
-- 🧩 Clean modular architecture (components, templates, modules, hooks, contexts)  
-- ♻️ Shared validation between Frontend and Backend  
-- 🌐 Full RTL support and Persian messages  
-- 🧪 Seed data for quick local development  
-- 🎨 Minimal / modern UI using TailwindCSS  
-- 📱 Fully responsive (mobile, tablet, desktop)
+- 🔐 Secure JWT-based authentication (signup, login, logout, session management with access/refresh tokens and httpOnly cookies)  
+- 🧺 Guest cart with automatic, idempotent merge upon user login  
+- ⚡ Fast UX using Optimistic UI patterns to reduce perceived latency  
+- 🧩 Clean, modular architecture (components, templates, modules, hooks, contexts)  
+- ♻️ Shared frontend/backend validation with reusable schemas (e.g., Zod/Joi)  
+- 🌐 Full RTL support and Persian localization  
+- 🧪 Seed data for rapid local development and testing  
+- 🎨 Minimal/modern UI built with TailwindCSS; fully responsive  
+- 🔗 Versioned private API with OpenAPI docs and auth/cart endpoints  
+- 📱 Custom mobile navigation and custom 404 page with accessibility (a11y) and RTL support
 
 ---
 
