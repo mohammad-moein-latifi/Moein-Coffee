@@ -122,10 +122,12 @@ npm run build
 npm start
 ```
 
----
-
 ## 📜 License
 
-This project is published under a custom license: **All Rights Reserved © 2025 Moein Coffee**.  
-Any personal, educational or commercial use, distribution or publication without written permission is **prohibited**.
+© 2025 Moein Coffee — All Rights Reserved.
+
+- This project is released under the proprietary license "All Rights Reserved © 2025 Moein Coffee".
+- Any use, reproduction, distribution, modification, or exploitation of this project — whether personal, educational, or commercial — is prohibited without prior written permission from the copyright holder.
+- The initial design of this project was inspired by a Figma design published by [Sabzlearn](https://sabzlearn.ir/). The final design has been significantly redesigned and developed by the author.
+
 
