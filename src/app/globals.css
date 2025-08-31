@@ -1,26 +1,351 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+
+
+  --shadow-custom: 0px 1px 10px 0px #0000000d;
+
+  --radius-4xl: 2rem;
+
+  --font-vazir: "Vazir";
+
+  --font-vazir-md: "Vazir-Medium";
+
+  --font-vazir-b: "Vazir-Bold";
+
+  --font-estedad: "Estedad-Light";
+
+  --font-estedad-md: "Estedad-Medium";
+
+  --font-estedad-b: "Estedad-Bold";
+
+
+  --tracking-tightest: -0.065em;
+
+  --breakpoint-xs: 480px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@utility container {
+  @apply mx-auto px-4 lg:px-2.5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  /*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background-color: rgba(209, 213, 219);
+    border-radius: 5px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background-image: -webkit-gradient(linear,
+        left top,
+        left bottom,
+        from(#e17100),
+        to(#fbbf24));
+    background-image: linear-gradient(#e17100, #fbbf24);
+    border-radius: 5px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #fbbf24;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+
+    -webkit-text-fill-color: #f5f5f4 !important;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    box-shadow: 0 0 0px 1000px transparent inset !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+  }
+
+
+  input:-moz-autofill,
+  textarea:-moz-autofill,
+  select:-moz-autofill {
+    box-shadow: 0 0 0px 1000px transparent inset !important;
+    -moz-text-fill-color: #f5f5f4 !important;
+  }
+
+
+
+
+  @font-face {
+    font-family: "Vazir";
+    src: url("/fonts/Vazir/woff2/Vazir-Regular-FD.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Vazir-Medium";
+    src: url("/fonts/Vazir/woff2/Vazir-Medium-FD.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Vazir-Bold";
+    src: url("/fonts/Vazir/woff2/Vazir-Bold-FD.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Estedad-Light";
+    src: url("/fonts/Estedad/woff2/Estedad-Light.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Estedad-Medium";
+    src: url("/fonts/Estedad/woff2/Estedad-Medium.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Estedad-Bold";
+    src: url("/fonts/Estedad/woff2/Estedad-Bold.woff2") format("woff2");
+    font-display: swap;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .bg-header-desktop {
+    background-image: url("/img/headerBg.png");
+  }
+
+  .bg-auth {
+
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url('/img/authBg.png');
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+  }
+
+
+
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ltr-element {
+    direction: ltr;
+    text-align: left;
+  }
+
+
+}
+
+@layer components {
+  .custom-scroll::-webkit-scrollbar-track {
+    margin: 10px 0;
+  }
+
+  .mobile-menu .custom-scroll::-webkit-scrollbar-track {
+    margin: -6px;
+  }
+
+  .custom-scroll::-webkit-scrollbar-track {
+    background-color: rgba(209, 213, 219, 0.5);
+    border-radius: 5px;
+  }
+
+  .submenu {
+    @apply hidden pt-3 px-6 space-y-3 text-zinc-600 dark:text-white text-base *:inline-block *:transition-all delay-75;
+  }
+
+  .submenu--open {
+    @apply block;
+  }
+
+  .submenu__item--active {
+    @apply relative text-amber-600 pr-2.5;
+  }
+
+  .submenu__item--active::after {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 100%;
+    background-color: #e17100;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  .circle {
+    @apply hidden md:flex items-center justify-center border rounded-full;
+  }
+
+  .circle--lg {
+    @apply w-[203px] h-[203px] border-white/25 translate-y-2/4;
+  }
+
+  .circle--md {
+    @apply w-[145px] h-[145px] border-white/50;
+  }
+
+  .circle--sm {
+    @apply w-[95px] h-[95px] border-white/80;
+  }
+
+  @media screen and (min-width: 1280px) {
+    html.dark .products {
+      background-image: url("/img/products-bg.png");
+    }
+
+    .products {
+      background: linear-gradient(rgba(243, 244, 246, 0.65),
+          rgba(243, 244, 246, 0.5)),
+        url("/img/products-bg.png");
+      background-size: 100%;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .section-title {
+    @apply font-estedad-md text-lg sm:text-xl md:text-3xl;
+  }
+
+  .section-subtitle {
+    @apply mt-0.5 md:mt-1.5 font-estedad text-sm sm:text-base md:text-lg;
+  }
+
+  .section-link {
+    @apply py-1.5 pl-1 pr-3 rounded-md flex text-center items-center justify-center md:gap-x-1  text-sm sm:text-base md:text-lg text-amber-600 tracking-tightest md:hover:bg-orange-200/20 transition-all;
+  }
+
+  .offer {
+    @apply relative;
+  }
+
+  .offer::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    inset: 0;
+    bottom: 4px;
+    margin: auto;
+    background-color: #ef4444;
+  }
+
+
+
+
+  .toast-root {
+    @apply max-w-sm w-full flex items-start gap-3 rounded-xl shadow-lg border px-4 py-3 text-stone-100 backdrop-blur-md;
+    background-color: rgba(28, 25, 23, 0.8) !important;
+  }
+
+
+  .Toastify__toast {
+    background-color: rgba(28, 25, 23, 0.8) !important;
+    color: inherit !important;
+  }
+
+  /* حاشیهٔ رنگی بر اساس نوع توست */
+  .Toastify__toast--success.toast-root,
+  .Toastify__toast--success {
+    border-color: rgb(16 185 129) !important;
+  }
+
+  .Toastify__toast--error.toast-root,
+  .Toastify__toast--error {
+    border-color: rgb(244 63 94) !important;
+  }
+
+  .Toastify__toast--info.toast-root,
+  .Toastify__toast--info {
+    border-color: rgb(148 163 184) !important;
+  }
+
+
+  .Toastify__progress-bar {
+    background-color: #f59e0b !important;
+  }
+
+
+  .swiper-button-prev-custom,
+  .swiper-button-next-custom {
+    @apply w-9 h-9 md:w-11 md:h-11 shadow-custom rounded-full text-zinc-700 dark:text-white bg-white dark:bg-zinc-700 cursor-pointer hover:bg-gray-300 dark:hover:bg-white dark:hover:text-zinc-700 transition-all;
+  }
+
+  .btn {
+    @apply px-1.5 py-2 md:px-2.5 md:py-1.5 rounded-full;
+  }
+
+  .services {
+    position: relative;
+  }
+
+  .services::after,
+  .services::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    background-color: #d1d5db;
+  }
+
+  @media screen and (min-width: 1024px) {
+
+    .services::after,
+    .services::before {
+      content: none;
+    }
+  }
+
+  html.dark .services::after,
+  html.dark .services::before {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .services::after {
+    width: calc(100% - 2rem);
+    height: 1px;
+  }
+
+  .services::before {
+    width: 1px;
+    height: calc(100% + 1.25rem);
+  }
+
+  .overlay {
+    @apply invisible opacity-0 md:hidden bg-black/40 fixed inset-0 w-full h-full z-10 transition-all;
+  }
+
+  .overlay--visible {
+    @apply visible opacity-100;
+  }
 }
